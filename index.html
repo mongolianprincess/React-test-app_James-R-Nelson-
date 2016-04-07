@@ -43,14 +43,42 @@
         )
       })
 
+    var ContactForm = React.createClass({
+      propTypes: {
+        contact: React.PropTypes.object.isRequired
+      },
+
+      render: function() {
+        return(
+          React.createElement('form',{},
+              React.createElement('input', {
+              type: 'text',
+              placeholder: 'Name (required)',
+              value: this.props.contact.name,}),
+              React.createElement('input', {
+                type: 'email',
+                placeholder: 'Email (required)',
+                value: this.props.contact.email
+              }),
+              React.createElement('textarea', {
+                type: 'text',
+                placeholder: 'Description (required)',
+                value: this.props.contact.description
+              }),
+              React.createElement('button', {type: 'submit'}, 'Add Contact'))
+          )
+      }
+    })
 
     var rootElement =
       React.createElement('div',{},
         React.createElement('h1', {},"Contacts"),
-        React.createElement('ul',{}, contactElements)
+        React.createElement('ul',{}, contactElements),
+        React.createElement(ContactForm, {contact: {}})
       )
 
   ReactDOM.render(rootElement, document.getElementById('react-app'))
+
 
     </script>
   </body>
